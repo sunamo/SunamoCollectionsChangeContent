@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>24.1.7.1</Version>
+	  <Description>Method for change content across whole collection</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="SunamoArgs" Version="24.1.9.1" />
+  </ItemGroup>
+</Project>
