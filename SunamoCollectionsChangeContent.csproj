@@ -16,6 +16,5 @@
     <Folder Include="Args\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="SunamoArgs" Version="24.2.6.4" />
   </ItemGroup>
 </Project>
