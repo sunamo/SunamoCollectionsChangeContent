@@ -1,7 +1,13 @@
 
 
 
-namespace SunamoCollectionsChangeContent;
+namespace
+#if SunamoDevCode
+SunamoDevCode
+#else
+SunamoCollectionsChangeContent
+#endif
+;
 
 public class CAChangeContent
 {
