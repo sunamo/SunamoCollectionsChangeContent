@@ -1,14 +1,16 @@
-
-
-
 namespace
 #if SunamoDevCode
 SunamoDevCode
+#elif SunamoGetFiles
+SunamoGetFiles
+#elif SunamoGetFolders
+SunamoGetFolders
+#elif SunamoWikipedia
+SunamoWikipedia
 #else
 SunamoCollectionsChangeContent
 #endif
 ;
-
 public class CAChangeContent
 {
     private static void RemoveNullOrEmpty(ChangeContentArgs a, List<string> files_in)
@@ -19,7 +21,6 @@ public class CAChangeContent
             {
                 files_in.Remove(null);
             }
-
             if (a.removeEmpty)
             {
                 for (int i = files_in.Count - 1; i >= 0; i--)
@@ -32,7 +33,6 @@ public class CAChangeContent
             }
         }
     }
-
     /// <summary>
     /// Direct edit
     /// If not every element fullfil pattern, is good to remove null (or values returned if cant be changed) from result
@@ -47,12 +47,9 @@ public class CAChangeContent
         {
             files_in[i] = func.Invoke(files_in[i]);
         }
-
         RemoveNullOrEmpty(a, files_in);
-
         return files_in;
     }
-
     /// <summary>
     /// Direct edit
     ///
@@ -68,7 +65,6 @@ public class CAChangeContent
         var result = ChangeContent<string>(a, files_in, func, a1);
         return result;
     }
-
     /// <summary>
     /// Poslední číslo je počet parametrů jež se předávají do delegátu
     /// </summary>
@@ -84,12 +80,9 @@ public class CAChangeContent
         {
             files_in[i] = func.Invoke(files_in[i], a1, a2);
         }
-
         RemoveNullOrEmpty(a, files_in);
-
         return files_in;
     }
-
     /// <summary>
     /// Direct edit
     /// Earlier name was ChangeContent , but has Predicate => ChangeContentWithCondition
@@ -107,12 +100,9 @@ public class CAChangeContent
                 changed = true;
             }
         }
-
         RemoveNullOrEmpty(a, files_in);
-
         return changed;
     }
-
     #region Vem obojí
     public static List<string> ChangeContentSwitch12<Arg1>(List<string> files_in, Func<Arg1, string, string> func, Arg1 arg)
     {
@@ -122,7 +112,6 @@ public class CAChangeContent
         }
         return files_in;
     }
-
     /// <summary>
     /// Direct edit input collection
     ///
@@ -138,7 +127,6 @@ public class CAChangeContent
         {
             a = new ChangeContentArgs();
         }
-
         if (a.switchFirstAndSecondArg)
         {
             files_in = ChangeContentSwitch12<Arg1>(files_in, funcSwitch12, arg);
@@ -150,19 +138,11 @@ public class CAChangeContent
                 files_in[i] = func.Invoke(files_in[i], arg);
             }
         }
-
-
         RemoveNullOrEmpty(a, files_in);
-
         return files_in;
     }
     #endregion
-
-
-
     #region ChangeContent for easy copy
-
-
     /// <summary>
     /// Direct edit
     /// </summary>
@@ -179,7 +159,6 @@ public class CAChangeContent
         }
         return result;
     }
-
     /// <summary>
     /// TResult is the same type as T1 (output collection is the same generic as input)
     /// </summary>
@@ -196,11 +175,9 @@ public class CAChangeContent
             // Fully generic - no strict string can't return the same collection
             result.Add(func.Invoke(files_in[i], t2));
         }
-
         //CA.RemoveDefaultT<TResult>(result);
         return result;
     }
-
     /// <summary>
     /// Direct edit
     /// </summary>
@@ -216,11 +193,8 @@ public class CAChangeContent
         {
             files_in[i] = func.Invoke(files_in[i], arg1, arg2);
         }
-
         RemoveNullOrEmpty(a, files_in);
-
         return files_in;
     }
-
     #endregion
 }
