@@ -1,3 +1,5 @@
+
+namespace SunamoCollectionsChangeContent;
 public class CAChangeContent
 {
     private static void RemoveNullOrEmpty(ChangeContentArgs a, List<string> files_in)

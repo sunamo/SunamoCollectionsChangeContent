@@ -1,3 +1,5 @@
+
+namespace SunamoCollectionsChangeContent;
 using System.Diagnostics;
 using System.Text;
 
