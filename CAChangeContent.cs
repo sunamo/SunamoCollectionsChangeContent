@@ -1,16 +1,3 @@
-namespace
-#if SunamoDevCode
-SunamoDevCode
-#elif SunamoGetFiles
-SunamoGetFiles
-#elif SunamoGetFolders
-SunamoGetFolders
-#elif SunamoWikipedia
-SunamoWikipedia
-#else
-SunamoCollectionsChangeContent
-#endif
-;
 public class CAChangeContent
 {
     private static void RemoveNullOrEmpty(ChangeContentArgs a, List<string> files_in)
