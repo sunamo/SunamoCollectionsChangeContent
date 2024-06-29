@@ -1,7 +1,7 @@
 namespace SunamoCollectionsChangeContent;
 
 
-internal class ChangeContentArgs
+public class ChangeContentArgs
 {
     internal bool removeNull = false;
     internal bool removeEmpty = false;
