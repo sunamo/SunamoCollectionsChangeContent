@@ -1,4 +1,3 @@
-
 namespace SunamoCollectionsChangeContent;
 public class CAChangeContent
 {
