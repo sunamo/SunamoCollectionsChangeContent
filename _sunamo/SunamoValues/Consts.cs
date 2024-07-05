@@ -1,4 +1,4 @@
-namespace SunamoCollectionsChangeContent;
+namespace SunamoCollectionsChangeContent._sunamo.SunamoValues;
 
 
 
