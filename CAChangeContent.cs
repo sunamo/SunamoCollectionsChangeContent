@@ -115,7 +115,7 @@ public class CAChangeContent
     {
         if (a == null)
         {
-            a = null;
+            a = new ChangeContentArgs();
         }
         if (a.switchFirstAndSecondArg)
         {
