@@ -21,6 +21,7 @@ public class CAChangeContent
             }
         }
     }
+
     /// <summary>
     /// Direct edit
     /// If not every element fullfil pattern, is good to remove null (or values returned if cant be changed) from result
@@ -38,6 +39,7 @@ public class CAChangeContent
         RemoveNullOrEmpty(a, files_in);
         return files_in;
     }
+
     /// <summary>
     /// Direct edit
     ///
@@ -48,9 +50,9 @@ public class CAChangeContent
     /// <param name="func"></param>
     /// <param name="a1"></param>
     /// <returns></returns>
-    public static List<string> ChangeContent1(ChangeContentArgs a, List<string> files_in, Func<string, string, string> func, string a1)
+    public static List<string> ChangeContent1<T>(ChangeContentArgs a, List<string> files_in, Func<string, T, string> func, T a1)
     {
-        var result = ChangeContent<string>(a, files_in, func, a1);
+        var result = ChangeContent<T>(a, files_in, func, a1);
         return result;
     }
     /// <summary>
@@ -62,7 +64,7 @@ public class CAChangeContent
     /// <param name="a1"></param>
     /// <param name="a2"></param>
     /// <returns></returns>
-    public static List<string> ChangeContent2(ChangeContentArgs a, List<string> files_in, Func<string, string, string, string> func, string a1, string a2)
+    public static List<string> ChangeContent2<T, U>(ChangeContentArgs a, List<string> files_in, Func<string, T, U, string> func, T a1, U a2)
     {
         for (int i = 0; i < files_in.Count; i++)
         {
