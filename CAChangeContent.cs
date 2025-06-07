@@ -137,24 +137,24 @@ public class CAChangeContent
         return result;
     }
 
-    /// <summary>
-    ///     TResult is the same type as T1 (output collection is the same generic as input)
-    /// </summary>
-    /// <typeparam name="T1"></typeparam>
-    /// <typeparam name="T2"></typeparam>
-    /// <typeparam name="TResult"></typeparam>
-    /// <param name="files_in"></param>
-    /// <param name="func"></param>
-    private static List<TResult> ChangeContent<T1, T2, TResult>(ChangeContentArgs a, Func<T1, T2, TResult> func,
-        List<T1> files_in, T2 t2)
-    {
-        var result = new List<TResult>(files_in.Count);
-        for (var i = 0; i < files_in.Count; i++)
-            // Fully generic - no strict string can't return the same collection
-            result.Add(func.Invoke(files_in[i], t2));
-        //CA.RemoveDefaultT<TResult>(result);
-        return result;
-    }
+    ///// <summary>
+    /////     TResult is the same type as T1 (output collection is the same generic as input)
+    ///// </summary>
+    ///// <typeparam name="T1"></typeparam>
+    ///// <typeparam name="T2"></typeparam>
+    ///// <typeparam name="TResult"></typeparam>
+    ///// <param name="files_in"></param>
+    ///// <param name="func"></param>
+    //private static List<TResult> ChangeContent<T1, T2, TResult>(ChangeContentArgs a, Func<T1, T2, TResult> func,
+    //    List<T1> files_in, T2 t2)
+    //{
+    //    var result = new List<TResult>(files_in.Count);
+    //    for (var i = 0; i < files_in.Count; i++)
+    //        // Fully generic - no strict string can't return the same collection
+    //        result.Add(func.Invoke(files_in[i], t2));
+    //    //CA.RemoveDefaultT<TResult>(result);
+    //    return result;
+    //}
 
     /// <summary>
     ///     Direct edit
