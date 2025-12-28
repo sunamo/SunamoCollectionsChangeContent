@@ -1,3 +1,4 @@
+// variables names: ok
 namespace SunamoCollectionsChangeContent._sunamo.SunamoExceptions;
 
 // EN: Variable names have been checked and replaced with self-descriptive names
@@ -8,8 +9,8 @@ internal sealed partial class Exceptions
     #region Other
 
 #region IsNullOrWhitespace
-    readonly static StringBuilder sbAdditionalInfoInner = new();
-    readonly static StringBuilder sbAdditionalInfo = new();
+    internal readonly static StringBuilder AdditionalInfoInnerStringBuilder = new();
+    internal readonly static StringBuilder AdditionalInfoStringBuilder = new();
     #endregion
 #endregion
 }

@@ -1,16 +1,20 @@
+// variables names: ok
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoCollectionsChangeContent;
 
 public class CAChangeContent
 {
-    private static void RemoveNullOrEmpty(ChangeContentArgs a, List<string> files_in)
+    private static void RemoveNullOrEmpty(ChangeContentArgs args, List<string> items)
     {
-        if (a != null)
+        if (args != null)
         {
-            if (a.removeNull) files_in.Remove(null);
-            if (a.removeEmpty)
-                for (var i = files_in.Count - 1; i >= 0; i--)
-                    if (files_in[i].Trim() == string.Empty)
-                        files_in.RemoveAt(i);
+            if (args.ShouldRemoveNull) items.Remove(null);
+            if (args.ShouldRemoveEmpty)
+                for (var i = items.Count - 1; i >= 0; i--)
+                    if (items[i].Trim() == string.Empty)
+                        items.RemoveAt(i);
         }
     }
 
@@ -19,83 +23,85 @@ public class CAChangeContent
     ///     If not every element fullfil pattern, is good to remove null (or values returned if cant be changed) from result
     ///     Poslední číslo je počet parametrů jež se předávají do delegátu
     /// </summary>
-    /// <param name="files_in"></param>
+    /// <param name="args"></param>
+    /// <param name="items"></param>
     /// <param name="func"></param>
-    public static List<string> ChangeContent0(ChangeContentArgs a, List<string> files_in, Func<string, string> func)
+    public static List<string> ChangeContent0(ChangeContentArgs args, List<string> items, Func<string, string> func)
     {
-        for (var i = 0; i < files_in.Count; i++) files_in[i] = func.Invoke(files_in[i]);
-        RemoveNullOrEmpty(a, files_in);
-        return files_in;
+        for (var i = 0; i < items.Count; i++) items[i] = func.Invoke(items[i]);
+        RemoveNullOrEmpty(args, items);
+        return items;
     }
 
     /// <summary>
     ///     Direct edit
     ///     Poslední číslo je počet parametrů jež se předávají do delegátu
     /// </summary>
-    /// <param name="a"></param>
-    /// <param name="files_in"></param>
+    /// <param name="args"></param>
+    /// <param name="items"></param>
     /// <param name="func"></param>
-    /// <param name="a1"></param>
+    /// <param name="argument1"></param>
     /// <returns></returns>
-    public static List<string> ChangeContent1<T>(ChangeContentArgs a, List<string> files_in,
-        Func<string, T, string> func, T a1)
+    public static List<string> ChangeContent1<T>(ChangeContentArgs args, List<string> items,
+        Func<string, T, string> func, T argument1)
     {
-        var result = ChangeContent(a, files_in, func, a1);
-        return result;
+        return ChangeContent(args, items, func, argument1);
     }
 
     /// <summary>
     ///     Poslední číslo je počet parametrů jež se předávají do delegátu
     /// </summary>
-    /// <param name="a"></param>
-    /// <param name="files_in"></param>
+    /// <param name="args"></param>
+    /// <param name="items"></param>
     /// <param name="func"></param>
-    /// <param name="a1"></param>
-    /// <param name="a2"></param>
+    /// <param name="argument1"></param>
+    /// <param name="argument2"></param>
     /// <returns></returns>
-    public static List<string> ChangeContent2<T, U>(ChangeContentArgs a, List<string> files_in,
-        Func<string, T, U, string> func, T a1, U a2)
+    public static List<string> ChangeContent2<T, U>(ChangeContentArgs args, List<string> items,
+        Func<string, T, U, string> func, T argument1, U argument2)
     {
-        for (var i = 0; i < files_in.Count; i++)
+        for (var i = 0; i < items.Count; i++)
         {
-            if (a.dontChangeIndexes != null && a.dontChangeIndexes.Contains(i))
+            if (args.DontChangeIndexes != null && args.DontChangeIndexes.Contains(i))
             {
                 continue;
             }
-            files_in[i] = func.Invoke(files_in[i], a1, a2);
+            items[i] = func.Invoke(items[i], argument1, argument2);
         }
-        RemoveNullOrEmpty(a, files_in);
-        return files_in;
+        RemoveNullOrEmpty(args, items);
+        return items;
     }
 
     /// <summary>
     ///     Direct edit
     ///     Earlier name was ChangeContent , but has Predicate => ChangeContentWithCondition
     /// </summary>
-    /// <param name="files_in"></param>
+    /// <param name="args"></param>
+    /// <param name="items"></param>
+    /// <param name="predicate"></param>
     /// <param name="func"></param>
-    public static bool ChangeContentWithCondition(ChangeContentArgs a, List<string> files_in,
+    public static bool ChangeContentWithCondition(ChangeContentArgs args, List<string> items,
         Predicate<string> predicate, Func<string, string> func)
     {
         var changed = false;
-        for (var i = 0; i < files_in.Count; i++)
-            if (predicate.Invoke(files_in[i]))
+        for (var i = 0; i < items.Count; i++)
+            if (predicate.Invoke(items[i]))
             {
-                files_in[i] = func.Invoke(files_in[i]);
+                items[i] = func.Invoke(items[i]);
                 changed = true;
             }
 
-        RemoveNullOrEmpty(a, files_in);
+        RemoveNullOrEmpty(args, items);
         return changed;
     }
 
     #region Vem obojí
 
-    public static List<string> ChangeContentSwitch12<Arg1>(List<string> files_in, Func<Arg1, string, string> func,
-        Arg1 arg)
+    public static List<string> ChangeContentSwitch12<Arg1>(List<string> items, Func<Arg1, string, string> func,
+        Arg1 argument)
     {
-        for (var i = 0; i < files_in.Count; i++) files_in[i] = func.Invoke(arg, files_in[i]);
-        return files_in;
+        for (var i = 0; i < items.Count; i++) items[i] = func.Invoke(argument, items[i]);
+        return items;
     }
 
     /// <summary>
@@ -103,74 +109,45 @@ public class CAChangeContent
     ///     Dříve to bylo List<string> files_in, Func<string,
     /// </summary>
     /// <typeparam name="Arg1"></typeparam>
-    /// <param name="files_in"></param>
+    /// <param name="args"></param>
+    /// <param name="items"></param>
     /// <param name="func"></param>
-    /// <param name="arg"></param>
-    public static List<string> ChangeContent<Arg1>(ChangeContentArgs a, List<string> files_in,
-        Func<string, Arg1, string> func, Arg1 arg, Func<Arg1, string, string> funcSwitch12 = null)
+    /// <param name="argument"></param>
+    /// <param name="funcSwitch12"></param>
+    public static List<string> ChangeContent<Arg1>(ChangeContentArgs args, List<string> items,
+        Func<string, Arg1, string> func, Arg1 argument, Func<Arg1, string, string> funcSwitch12 = null)
     {
-        if (a == null) a = new ChangeContentArgs();
-        if (a.switchFirstAndSecondArg)
-            files_in = ChangeContentSwitch12(files_in, funcSwitch12, arg);
+        if (args == null) args = new ChangeContentArgs();
+        if (args.ShouldSwitchFirstAndSecondArg)
+            items = ChangeContentSwitch12(items, funcSwitch12, argument);
         else
-            for (var i = 0; i < files_in.Count; i++)
-                files_in[i] = func.Invoke(files_in[i], arg);
-        RemoveNullOrEmpty(a, files_in);
-        return files_in;
+            for (var i = 0; i < items.Count; i++)
+                items[i] = func.Invoke(items[i], argument);
+        RemoveNullOrEmpty(args, items);
+        return items;
     }
 
     #endregion
 
     #region ChangeContent for easy copy
 
-    /// <summary>
-    ///     Direct edit
-    /// </summary>
-    /// <typeparam name="T1"></typeparam>
-    /// <typeparam name="TResult"></typeparam>
-    /// <param name="files_in"></param>
-    /// <param name="func"></param>
-    private static List<TResult> ChangeContent<T1, TResult>(List<T1> files_in, Func<T1, TResult> func)
-    {
-        var result = new List<TResult>(files_in.Count);
-        for (var i = 0; i < files_in.Count; i++) result.Add(func.Invoke(files_in[i]));
-        return result;
-    }
-
-    ///// <summary>
-    /////     TResult is the same type as T1 (output collection is the same generic as input)
-    ///// </summary>
-    ///// <typeparam name="T1"></typeparam>
-    ///// <typeparam name="T2"></typeparam>
-    ///// <typeparam name="TResult"></typeparam>
-    ///// <param name="files_in"></param>
-    ///// <param name="func"></param>
-    //private static List<TResult> ChangeContent<T1, T2, TResult>(ChangeContentArgs a, Func<T1, T2, TResult> func,
-    //    List<T1> files_in, T2 t2)
-    //{
-    //    var result = new List<TResult>(files_in.Count);
-    //    for (var i = 0; i < files_in.Count; i++)
-    //        // Fully generic - no strict string can't return the same collection
-    //        result.Add(func.Invoke(files_in[i], t2));
-    //    //CA.RemoveDefaultT<TResult>(result);
-    //    return result;
-    //}
-
+ 
     /// <summary>
     ///     Direct edit
     /// </summary>
     /// <typeparam name="Arg1"></typeparam>
     /// <typeparam name="Arg2"></typeparam>
-    /// <param name="files_in"></param>
+    /// <param name="args"></param>
+    /// <param name="items"></param>
     /// <param name="func"></param>
-    /// <param name="arg1"></param>
-    /// <param name="arg2"></param>
-    public static List<string> ChangeContent<Arg1, Arg2>(ChangeContentArgs a, List<string> files_in,
-        Func<string, Arg1, Arg2, string> func, Arg1 arg1, Arg2 arg2)
+    /// <param name="argument1"></param>
+    /// <param name="argument2"></param>
+    public static List<string> ChangeContent<Arg1, Arg2>(ChangeContentArgs args, List<string> items,
+        Func<string, Arg1, Arg2, string> func, Arg1 argument1, Arg2 argument2)
     {
-        for (var i = 0; i < files_in.Count; i++) files_in[i] = func.Invoke(files_in[i], arg1, arg2);
-        RemoveNullOrEmpty(a, files_in);
-        return files_in;
+        for (var i = 0; i < items.Count; i++) items[i] = func.Invoke(items[i], argument1, argument2);
+        RemoveNullOrEmpty(args, items);
+        return items;
     }
 
     #endregion
