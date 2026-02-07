@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SunamoCollectionsChangeContent.Tests\\SunamoCollectionsChangeContent.Tests.csproj" />
+  <Project Path="RunnerCollectionsChangeContent\\RunnerCollectionsChangeContent.csproj" />
+  <Project Path="SunamoCollectionsChangeContent\SunamoCollectionsChangeContent.csproj" />
+</Solution>
