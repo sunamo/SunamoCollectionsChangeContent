@@ -1,22 +1,25 @@
 # SunamoCollectionsChangeContent
 
-Method for change content across whole collection
+Methods for changing content across an entire collection of strings using custom transformation functions.
 
 ## Overview
 
-SunamoCollectionsChangeContent is part of the Sunamo package ecosystem, providing modular, platform-independent utilities for .NET development.
+SunamoCollectionsChangeContent is part of the Sunamo package ecosystem, providing modular, platform-independent utilities for .NET development. It allows you to apply transformation functions to every element in a `List<string?>`, with support for conditional transformation, multiple arguments, and automatic null/empty removal.
 
 ## Main Components
 
 ### Key Classes
 
-- **CAChangeContent**
-- **ChangeContentArgs**
+- **CAChangeContent** - Static class with methods for transforming string collections.
+- **ChangeContentArgs** - Configuration class controlling null/empty removal and argument switching behavior.
 
 ### Key Methods
 
-- `ChangeContent0()`
-- `ChangeContentWithCondition()`
+- `ChangeContent0()` - Applies a `Func<string?, string?>` to each element.
+- `ChangeContent1<T>()` - Applies a transformation with one additional argument.
+- `ChangeContent2<T, U>()` - Applies a transformation with two additional arguments.
+- `ChangeContentWithCondition()` - Applies a transformation only to elements matching a predicate.
+- `ChangeContentSwitch12<TArg>()` - Applies a transformation with switched parameter order.
 
 ## Installation
 
@@ -26,15 +29,14 @@ dotnet add package SunamoCollectionsChangeContent
 
 ## Dependencies
 
-- **Microsoft.Extensions.Logging.Abstractions** (v9.0.3)
+- **Microsoft.Extensions.Logging.Abstractions** (v10.0.2)
 
 ## Package Information
 
 - **Package Name**: SunamoCollectionsChangeContent
-- **Version**: 25.6.7.1
-- **Target Framework**: net9.0
+- **Version**: 26.2.23.3
+- **Target Frameworks**: net10.0; net9.0; net8.0
 - **Category**: Platform-Independent NuGet Package
-- **Source Files**: 7
 
 ## Related Packages
 
@@ -42,4 +44,4 @@ This package is part of the Sunamo package ecosystem. For more information about
 
 ## License
 
-See the repository root for license information.
+MIT - See the repository root for license information.
