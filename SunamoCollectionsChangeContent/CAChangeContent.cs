@@ -42,13 +42,14 @@ public class CAChangeContent
     /// Directly edits the collection by applying a transformation function with one additional argument to each element.
     /// The method name suffix indicates the number of additional parameters passed to the delegate (1 in this case).
     /// </summary>
+    /// <typeparam name="TArg">The type of the argument to pass to the transformation function.</typeparam>
     /// <param name="args">Configuration arguments for the transformation.</param>
     /// <param name="list">The list of strings to transform.</param>
     /// <param name="func">The transformation function to apply to each element.</param>
     /// <param name="argument1">The first argument to pass to the transformation function.</param>
     /// <returns>The modified list of strings.</returns>
-    public static List<string?> ChangeContent1<T>(ChangeContentArgs? args, List<string?> list,
-        Func<string?, T, string?> func, T argument1)
+    public static List<string?> ChangeContent1<TArg>(ChangeContentArgs? args, List<string?> list,
+        Func<string?, TArg, string?> func, TArg argument1)
     {
         return ChangeContent(args, list, func, argument1);
     }
@@ -57,14 +58,16 @@ public class CAChangeContent
     /// Directly edits the collection by applying a transformation function with two additional arguments to each element.
     /// The method name suffix indicates the number of additional parameters passed to the delegate (2 in this case).
     /// </summary>
+    /// <typeparam name="TArg1">The type of the first argument to pass to the transformation function.</typeparam>
+    /// <typeparam name="TArg2">The type of the second argument to pass to the transformation function.</typeparam>
     /// <param name="args">Configuration arguments for the transformation.</param>
     /// <param name="list">The list of strings to transform.</param>
     /// <param name="func">The transformation function to apply to each element.</param>
     /// <param name="argument1">The first argument to pass to the transformation function.</param>
     /// <param name="argument2">The second argument to pass to the transformation function.</param>
     /// <returns>The modified list of strings.</returns>
-    public static List<string?> ChangeContent2<T, U>(ChangeContentArgs? args, List<string?> list,
-        Func<string?, T, U, string?> func, T argument1, U argument2)
+    public static List<string?> ChangeContent2<TArg1, TArg2>(ChangeContentArgs? args, List<string?> list,
+        Func<string?, TArg1, TArg2, string?> func, TArg1 argument1, TArg2 argument2)
     {
         for (var i = 0; i < list.Count; i++)
         {
