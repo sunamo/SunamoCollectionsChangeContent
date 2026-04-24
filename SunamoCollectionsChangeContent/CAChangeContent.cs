@@ -10,7 +10,7 @@ public class CAChangeContent
     /// </summary>
     /// <param name="args">Configuration arguments specifying whether to remove null or empty values.</param>
     /// <param name="list">The list of strings to process.</param>
-    private static void RemoveNullOrEmpty(ChangeContentArgs? args, List<string?> list)
+    private static void removeNullOrEmpty(ChangeContentArgs? args, List<string?> list)
     {
         if (args != null)
         {
@@ -34,7 +34,7 @@ public class CAChangeContent
     public static List<string?> ChangeContent0(ChangeContentArgs? args, List<string?> list, Func<string?, string?> func)
     {
         for (var i = 0; i < list.Count; i++) list[i] = func.Invoke(list[i]);
-        RemoveNullOrEmpty(args, list);
+        removeNullOrEmpty(args, list);
         return list;
     }
 
@@ -77,7 +77,7 @@ public class CAChangeContent
             }
             list[i] = func.Invoke(list[i], argument1, argument2);
         }
-        RemoveNullOrEmpty(args, list);
+        removeNullOrEmpty(args, list);
         return list;
     }
 
@@ -101,7 +101,7 @@ public class CAChangeContent
                 changed = true;
             }
 
-        RemoveNullOrEmpty(args, list);
+        removeNullOrEmpty(args, list);
         return changed;
     }
 
@@ -143,7 +143,7 @@ public class CAChangeContent
         else
             for (var i = 0; i < list.Count; i++)
                 list[i] = func.Invoke(list[i], argument);
-        RemoveNullOrEmpty(args, list);
+        removeNullOrEmpty(args, list);
         return list;
     }
 
@@ -168,7 +168,7 @@ public class CAChangeContent
         Func<string?, TArg1, TArg2, string?> func, TArg1 argument1, TArg2 argument2)
     {
         for (var i = 0; i < list.Count; i++) list[i] = func.Invoke(list[i], argument1, argument2);
-        RemoveNullOrEmpty(args, list);
+        removeNullOrEmpty(args, list);
         return list;
     }
 

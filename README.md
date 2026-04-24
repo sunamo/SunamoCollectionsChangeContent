@@ -34,7 +34,7 @@ dotnet add package SunamoCollectionsChangeContent
 ## Package Information
 
 - **Package Name**: SunamoCollectionsChangeContent
-- **Version**: 26.2.23.3
+- **Version**: 26.4.7.5
 - **Target Frameworks**: net10.0; net9.0; net8.0
 - **Category**: Platform-Independent NuGet Package
 
