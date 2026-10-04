@@ -1,5 +1,10 @@
 # SunamoCollectionsChangeContent
 
+## Short description
+
+Metody pro změnu obsahu celé kolekce řetězců pomocí vlastních transformačních funkcí.
+
+
 Methods for changing content across an entire collection of strings using custom transformation functions.
 
 ## Overview
