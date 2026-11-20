@@ -1,5 +1,8 @@
 namespace SunamoCollectionsChangeContent;
 
+/// <summary>
+/// Represents the CA change content type.
+/// </summary>
 public class CAChangeContent
 {
     private static void removeNullOrEmpty(ChangeContentArgs? args, List<string?> list)
@@ -14,6 +17,13 @@ public class CAChangeContent
         }
     }
 
+    /// <summary>
+    /// Change content 0.
+    /// </summary>
+    /// <param name="args">The args.</param>
+    /// <param name="list">The list.</param>
+    /// <param name="func">The func.</param>
+    /// <returns>The change content 0 result.</returns>
     public static List<string?> ChangeContent0(ChangeContentArgs? args, List<string?> list, Func<string?, string?> func)
     {
         for (var i = 0; i < list.Count; i++) list[i] = func.Invoke(list[i]);
@@ -21,12 +31,30 @@ public class CAChangeContent
         return list;
     }
 
+    /// <summary>
+    /// Change content 1 t arg.
+    /// </summary>
+    /// <typeparam name="TArg">The type TArg.</typeparam>
+    /// <param name="args">The args.</param>
+    /// <param name="list">The list.</param>
+    /// <param name="func">The func.</param>
+    /// <param name="argument1">The argument 1.</param>
+    /// <returns>The change content 1 t arg result.</returns>
     public static List<string?> ChangeContent1<TArg>(ChangeContentArgs? args, List<string?> list,
         Func<string?, TArg, string?> func, TArg argument1)
     {
         return ChangeContent(args, list, func, argument1);
     }
 
+    /// <summary>
+    /// Change content 2 t arg 1 t arg 2.
+    /// </summary>
+    /// <param name="args">The args.</param>
+    /// <param name="list">The list.</param>
+    /// <param name="func">The func.</param>
+    /// <param name="argument1">The argument 1.</param>
+    /// <param name="argument2">The argument 2.</param>
+    /// <returns>The change content 2 t arg 1 t arg 2 result.</returns>
     public static List<string?> ChangeContent2<TArg1, TArg2>(ChangeContentArgs? args, List<string?> list,
         Func<string?, TArg1, TArg2, string?> func, TArg1 argument1, TArg2 argument2)
     {
@@ -42,6 +70,14 @@ public class CAChangeContent
         return list;
     }
 
+    /// <summary>
+    /// Change content with condition.
+    /// </summary>
+    /// <param name="args">The args.</param>
+    /// <param name="list">The list.</param>
+    /// <param name="predicate">The predicate.</param>
+    /// <param name="func">The func.</param>
+    /// <returns>The change content with condition result.</returns>
     public static bool ChangeContentWithCondition(ChangeContentArgs? args, List<string?> list,
         Predicate<string?> predicate, Func<string?, string?> func)
     {
@@ -59,6 +95,14 @@ public class CAChangeContent
 
     #region Both function variants
 
+    /// <summary>
+    /// Change content switch 12 t arg.
+    /// </summary>
+    /// <typeparam name="TArg">The type TArg.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <param name="func">The func.</param>
+    /// <param name="argument">The argument.</param>
+    /// <returns>The change content switch 12 t arg result.</returns>
     public static List<string?> ChangeContentSwitch12<TArg>(List<string?> list, Func<TArg, string?, string?> func,
         TArg argument)
     {
@@ -66,6 +110,16 @@ public class CAChangeContent
         return list;
     }
 
+    /// <summary>
+    /// Change content t arg.
+    /// </summary>
+    /// <typeparam name="TArg">The type TArg.</typeparam>
+    /// <param name="args">The args.</param>
+    /// <param name="list">The list.</param>
+    /// <param name="func">The func.</param>
+    /// <param name="argument">The argument.</param>
+    /// <param name="funcSwitch12">The func switch 12.</param>
+    /// <returns>The change content t arg result.</returns>
     public static List<string?> ChangeContent<TArg>(ChangeContentArgs? args, List<string?> list,
         Func<string?, TArg, string?> func, TArg argument, Func<TArg, string?, string?>? funcSwitch12 = null)
     {
@@ -83,6 +137,15 @@ public class CAChangeContent
 
     #region ChangeContent for easy copy
 
+    /// <summary>
+    /// Change content t arg 1 t arg 2.
+    /// </summary>
+    /// <param name="args">The args.</param>
+    /// <param name="list">The list.</param>
+    /// <param name="func">The func.</param>
+    /// <param name="argument1">The argument 1.</param>
+    /// <param name="argument2">The argument 2.</param>
+    /// <returns>The change content t arg 1 t arg 2 result.</returns>
     public static List<string?> ChangeContent<TArg1, TArg2>(ChangeContentArgs? args, List<string?> list,
         Func<string?, TArg1, TArg2, string?> func, TArg1 argument1, TArg2 argument2)
     {
